@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Navbar from "./_components/Navbar";
 import MainSlider from "./_components/MainSlider";
 import FeaturedProduct from "./product/_components/FeaturedProduct";
 

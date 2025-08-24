@@ -7,8 +7,9 @@ import Button from './Button'
 import Favorite from './Favorite'
 import Link from 'next/link'
 import Image from 'next/image'
+import { ProductInterface } from '@/interfaces/product.interface'
 
-export default function ProductItem({ prod }: { prod: any }) {
+export default function ProductItem({ prod }: { prod: ProductInterface }) {
      const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.2,
