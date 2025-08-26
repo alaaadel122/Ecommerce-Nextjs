@@ -2,9 +2,13 @@
 // import { getServerSession } from 'next-auth'
 // import { NextResponse } from 'next/server'
 
+import Cart from "./_component/Cart";
+
+
+
 export default async  function page() {
-    
+   
   return (
-    <div>cart</div>
+    <div><Cart></Cart></div>
   )
 }
