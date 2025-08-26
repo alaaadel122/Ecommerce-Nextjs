@@ -1,11 +1,10 @@
-import { authOptions } from '@/lib/auth'
-import { getServerSession } from 'next-auth'
-import React from 'react'
+// import { authOptions } from '@/lib/auth'
+// import { getServerSession } from 'next-auth'
+// import { NextResponse } from 'next/server'
 
 export default async  function page() {
-    const sessionData  = await getServerSession(authOptions)
-    console.log(sessionData)
+    
   return (
-    <div>page</div>
+    <div>cart</div>
   )
 }

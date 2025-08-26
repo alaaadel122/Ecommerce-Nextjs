@@ -36,7 +36,7 @@ export const authOptions: NextAuthOptions = {
             email: payload.user.email,   // مهم
             name: payload.user.name,     // مهم
             role: payload.user.role,     // لو عندك role
-            accessToken: payload.token,  // هنا بتحفظ التوكن
+            token: payload.token,  // هنا بتحفظ التوكن
           } as any;
         }
 
@@ -48,13 +48,13 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.user = user;
-        token.accessToken = (user as any).accessToken;
+        token.token = (user as any).token;
       }
       return token;
     },
     async session({ session, token }) {
       session.user = token.user as any;
-      (session as any).accessToken = token.accessToken;
+      (session as any).token = token.token;
       return session;
     },
   },

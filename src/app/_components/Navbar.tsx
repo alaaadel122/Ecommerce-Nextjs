@@ -1,12 +1,11 @@
 'use client'
 import Link from 'next/link'
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+     ;
 import ShoppingCart from './ShoppingCart';
 import logo from '@/assets/images/freshcart-logo.svg'
 import Image from 'next/image';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 
 export default function Navbar() {
      const { data: session, status } = useSession()
@@ -45,10 +44,14 @@ export default function Navbar() {
                          </ul>
                     </div>
                     <div className='flex '>
-                         {session?.user.name ? <Link href={'/'}><p className='pt-3'> {session.user.name.toUpperCase()}</p> </Link>:
+                         {session?.user.name ? <> <Link href={'/'}><p className='pt-3'> {session.user.name.toUpperCase()}</p> </Link> <button className='btn btn-danger rounded-2xl' onClick={async () => {
+                              // Optional: Clear custom cookies here if needed
+                              await signOut({ callbackUrl: '/' });
+                         }}> Log Out <i className="fa-solid fa-arrow-right-from-bracket"></i> </button></> :
                               <Link href={'/auth/register'} className="block py-2 px-3 text-gray-500  rounded-sm md:bg-transparent  md:mr-1 dark:text-white md:dark:text-main" aria-current="page">
-                                   <FontAwesomeIcon icon={faUser} size="xl" />
+                                   <i className='fa-solid fa-user fa-xl'></i>
                               </Link>
+
                          }
                          <Link href={'/shoppingCart'} className="block relative py-2 px-3 text-gray-500  rounded-sm md:bg-transparent  md:mr-1 dark:text-white md:dark:text-main" aria-current="page">
                               <ShoppingCart />

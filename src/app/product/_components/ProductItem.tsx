@@ -3,11 +3,12 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faEye } from '@fortawesome/free-solid-svg-icons'
-import Button from './Button'
+import Button from './addToCartBtn'
 import Favorite from './Favorite'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ProductInterface } from '@/interfaces/product.interface'
+import AddToCartBtn from './addToCartBtn'
 
 export default function ProductItem({ prod }: { prod: ProductInterface }) {
      const [ref, inView] = useInView({
@@ -74,7 +75,7 @@ export default function ProductItem({ prod }: { prod: ProductInterface }) {
                               transition={{ duration: 0.5, delay: 0.3 }}
                               className="absolute bottom-6 left-1/2 -translate-x-1/2 flex justify-center  opacity-0 translate-y-5 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500"
                          >
-                              <Button />
+                              <AddToCartBtn productId={prod._id}/>
                               <Favorite />
                          </motion.div>
                     </div>

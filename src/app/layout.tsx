@@ -5,7 +5,9 @@ import "@/lib/fontawesome";
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
 import NextAuthProvider from "@/Providers/Components/nextauth.providers";
-
+import Providers from "@/Providers/Components/ReactQueryProvider.provider";
+import { ToastContainer } from 'react-toastify';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const encode = Encode_Sans_Expanded({
   weight: ["300", "400"],
@@ -27,16 +29,19 @@ export default function RootLayout({
       <body
         className={`${encode.className} antialiased flex flex-col min-h-screen`}
       >
+        <Providers>
+          <ToastContainer />
 
-        <NextAuthProvider>
-          <div className="">
-            <Navbar></Navbar>
-          </div>
-          <div >
-            {children}
-          </div>
-          <Footer></Footer>
-        </NextAuthProvider>
+          <NextAuthProvider>
+            <div className="">
+              <Navbar></Navbar>
+            </div>
+            <div className="min-h-96">
+              {children}
+            </div>
+            <Footer></Footer>
+          </NextAuthProvider>
+        </Providers>
       </body>
     </html>
   );

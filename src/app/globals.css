@@ -94,6 +94,10 @@
 .rating{
   font-size: 14px;
 }
+.btn-danger{
+  background-color: red;
+  color:white
+}
 
 :root {
   --radius: 0.625rem;

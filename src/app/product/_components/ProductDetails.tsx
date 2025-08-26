@@ -3,6 +3,9 @@ import Rating from '@/app/_components/Rating'
 import { ProductInterface } from '@/interfaces/product.interface'
 import Image from 'next/image'
 import React, { useState } from 'react'
+import Button from './addToCartBtn'
+import Favorite from './Favorite'
+import AddToCartBtn from './addToCartBtn'
 
 export default function ProductDetails({ prod }: { prod: ProductInterface }) {
      const [activeImage, setActiveImage] = useState(prod?.images[0]) // الصورة الأساسية
@@ -72,7 +75,10 @@ export default function ProductDetails({ prod }: { prod: ProductInterface }) {
                               </svg>
                          </button>
                     </div>
-
+                    <div className='flex'>
+                    <AddToCartBtn productId={prod._id}></AddToCartBtn>
+                    <Favorite></Favorite>
+                    </div>
                </div>
           </div>
      )

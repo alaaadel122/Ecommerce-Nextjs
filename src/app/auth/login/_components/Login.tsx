@@ -14,7 +14,8 @@ export default function Login() {
           defaultValues:{
                email:'',
                password:''
-          }
+          },
+          
      })
      const firstError = Object.keys(form.formState.errors)[0]
      async function onSubmit(data:loginSchemaForm){
@@ -24,7 +25,7 @@ export default function Login() {
                redirect:true,
                callbackUrl:'/'
           })
-          console.log(res)
+          console.log("=========",res)
           if(res?.ok){
                window.location.href = res?.url || ''
           }else{
