@@ -8,9 +8,9 @@ import React from 'react'
 export default function Cart() {
      const { data, isLoading, isError } = useQuery({
           queryKey: ['cart'], queryFn: async () => {
-               const res = await fetch('/api/cart')
-               const paylod = await res.json()
-               return paylod
+               const res = await fetch('/api/cart');
+               if (!res.ok) throw new Error('Failed to fetch cart');
+               return res.json();
           }
      })
      console.log(data)
@@ -40,7 +40,7 @@ export default function Cart() {
                               </tr>
                          </thead>
                          <tbody>
-                              {data?.data.products.map((prod:CartProduct) => <ProductItemTable key={prod._id} prod={prod}></ProductItemTable>)}
+                              {data?.data?.products?.map((prod: CartProduct) => <ProductItemTable key={prod._id} prod={prod}></ProductItemTable>)}
 
                          </tbody>
                     </table>
@@ -50,7 +50,7 @@ export default function Cart() {
      )
 }
 
-function ProductItemTable({ prod }: { prod: CartProduct  }) {
+function ProductItemTable({ prod }: { prod: CartProduct }) {
      return (
 
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -80,7 +80,7 @@ function ProductItemTable({ prod }: { prod: CartProduct  }) {
                     </div>
                </td>
                <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    {prod.price }     EGP
+                    {prod.price}     EGP
                </td>
                <td className="px-6 py-4">
                     <i className='fa-solid fa-trash text-red-800'></i>
