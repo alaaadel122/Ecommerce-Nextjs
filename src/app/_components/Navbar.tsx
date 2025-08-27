@@ -48,7 +48,7 @@ export default function Navbar() {
                               // Optional: Clear custom cookies here if needed
                               await signOut({ callbackUrl: '/' });
                          }}> Log Out <i className="fa-solid fa-arrow-right-from-bracket"></i> </button></> :
-                              <Link href={'/auth/register'} className="block py-2 px-3 text-gray-500  rounded-sm md:bg-transparent  md:mr-1 dark:text-white md:dark:text-main" aria-current="page">
+                              <Link href={'/auth/login'} className="block py-2 px-3 text-gray-500  rounded-sm md:bg-transparent  md:mr-1 dark:text-white md:dark:text-main" aria-current="page">
                                    <i className='fa-solid fa-user fa-xl'></i>
                               </Link>
 

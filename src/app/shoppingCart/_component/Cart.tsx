@@ -1,4 +1,5 @@
 'use client'
+import Loading from '@/app/_components/Loading'
 import { CartProduct, Product } from '@/interfaces/cartProducts.interface'
 import { ProductInterface } from '@/interfaces/product.interface'
 import { useQuery } from '@tanstack/react-query'
@@ -13,6 +14,9 @@ export default function Cart() {
                return res.json();
           }
      })
+     if(isLoading){
+          return <Loading/>
+     }
      console.log(data)
      return (
           <div className='container mx-auto py-5'>

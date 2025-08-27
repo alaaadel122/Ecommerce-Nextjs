@@ -1,7 +1,9 @@
 import React from 'react'
-import { ClipLoader } from "react-spinners";
+import { BounceLoader } from "react-spinners";
 export default function Loading() {
      return (
-          <ClipLoader color="#36d7b7" size={50} />
+          <div className='flex justify-center items-center min-h-[80vh]'>
+               <BounceLoader color="#0aad0a" size={50} />
+          </div>
      )
 }
