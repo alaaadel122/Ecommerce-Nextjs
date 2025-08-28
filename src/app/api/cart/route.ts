@@ -10,7 +10,6 @@ export async function GET(req: NextRequest) {
           cache: 'no-store',
           method: 'GET',
           headers: {
-              
                token: token.token
           },
      }

@@ -4,5 +4,6 @@ export async function grtAllCategory(){
           {cache:'no-store'}
      )
      const {data} = await res.json()
+     console.log("api",data)
      return data;
 }
