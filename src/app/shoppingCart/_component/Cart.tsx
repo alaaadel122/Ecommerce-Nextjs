@@ -1,6 +1,6 @@
 'use client'
 import Loading from '@/app/_components/Loading'
-import { CartProduct, Product } from '@/interfaces/cartProducts.interface'
+import { CartProduct, Product } from '@/app/shoppingCart/typescript/cartProducts.interface'
 import { ProductInterface } from '@/interfaces/product.interface'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'

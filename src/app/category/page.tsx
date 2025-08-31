@@ -1,5 +1,5 @@
 import { grtAllCategory } from '@/apis/categories.api'
-import { CatergoriesInterface } from '@/interfaces/categories.interface'
+import { CatergoriesInterface } from '@/app/category/typescript/categories.interface'
 import React from 'react'
 import CategorySingleItem from './_components/CategorySingleItem'
 import Category from '../_components/Category'

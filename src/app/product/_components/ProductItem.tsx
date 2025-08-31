@@ -42,7 +42,7 @@ export default function ProductItem({ prod }: { prod: ProductInterface }) {
                               {prod.priceAfterDiscount ? (
                                    <>
                                         <span className="text-main text-xl">{prod.priceAfterDiscount} EGP</span>
-                                        <span className="text-xl line-through text-black ml-2">{prod.price}</span>
+                                        <span className="text-xl line-through text-black ml-2">{prod.price} EGP</span>
                                    </>
                               ) : (
                                    <span className="text-xl text-main">{prod.price} EGP</span>

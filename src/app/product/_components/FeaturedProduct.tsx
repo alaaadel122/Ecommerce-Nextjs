@@ -5,13 +5,10 @@ import ProductItem from './ProductItem'
 
 export default async function FeaturedProduct() {
   const data: ProductInterface[] = await grtProducts()
-  //  console.log(data)
   return (
-    <div>
+    <div className='container mx-auto'>
       <h3 className="text-gray-700 text-2xl after:ml-0.5 before:text-main before:content-['|'] my-5">Products</h3>
-
-      <div className='flex flex-wrap container mx-auto gap-y-3 gap-x-6 justify-center items-start mt-5'>
-
+      <div className='flex flex-wrap  gap-y-3 gap-x-3 justify-center items-start mt-5'>
         {data.map((prod: ProductInterface) => <ProductItem key={prod._id} prod={prod}></ProductItem>)}
       </div>
     </div>
