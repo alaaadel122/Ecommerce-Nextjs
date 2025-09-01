@@ -44,7 +44,7 @@ export default function Navbar() {
                          </ul>
                     </div>
                     <div className='flex '>
-                         {session?.user.name ? <> <Link href={'/'}><p className='pt-3'> {session.user.name.toUpperCase()}</p> </Link> <button className='btn btn-danger rounded-2xl' onClick={async () => {
+                         {session?.user.name ? <> <Link href={'/'}><p className='pt-3'> HI  {session.user.name.toUpperCase()}</p> </Link> <button className='pt-2 pl-2 text-main' onClick={async () => {
                               // Optional: Clear custom cookies here if needed
                               await signOut({ callbackUrl: '/' });
                          }}> Log Out <i className="fa-solid fa-arrow-right-from-bracket"></i> </button></> :

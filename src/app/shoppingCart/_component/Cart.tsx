@@ -2,10 +2,16 @@
 import Loading from '@/app/_components/Loading'
 import { CartProduct, Product } from '@/app/shoppingCart/typescript/cartProducts.interface'
 import { ProductInterface } from '@/interfaces/product.interface'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
-
+import cartImage from '@/assets/images/empty-shopping-cart-illustration-concept-on-white-background-vector.jpg'
+import { ClearCart } from '../_actions/clearCart.action'
+import { toast } from 'react-toastify'
+import { deleteProduct } from '../_actions/deleteProduct.action'
+import { da } from 'zod/v4/locales'
+import ClearBtn from './ClearBtn'
 export default function Cart() {
      const { data, isLoading, isError } = useQuery({
           queryKey: ['cart'], queryFn: async () => {
@@ -14,15 +20,27 @@ export default function Cart() {
                return res.json();
           }
      })
-     if(isLoading){
-          return <Loading/>
+     if (isLoading) {
+          return <Loading />
      }
-     console.log(data)
+     if (data.numOfCartItems == 0)
+          return <div className='w-full m-auto flex justify-center items-center'>
+               <Image alt='emptycart' width={700} height={700} src={cartImage} />
+          </div>
+
      return (
-          <div className='container mx-auto py-5'>
-               <h2>Total Cart Price : <span className='text-main text-2xl'>{data?.data.totalCartPrice}EGP</span> </h2>
-               <h3>Number of Cart items : <span className='text-main text-2xl'>{data?.numOfCartItems}</span></h3>
-               <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+          <div className='container  mx-auto py-5'>
+               <div className='flex justify-between w-[80%] mx-auto'>
+                    <div>
+                         <h2>Total Cart Price : <span className='text-main text-2xl'>{data?.data.totalCartPrice}EGP</span> </h2>
+                         <h3>Number of Cart items : <span className='text-main text-2xl'>{data?.numOfCartItems}</span></h3>
+                    </div>
+                    <div className='mt-5'>
+                         <ClearBtn/>
+                    </div>
+               </div>
+               <div className="relative w-[80%] mx-auto mt-5 overflow-x-auto shadow-md sm:rounded-lg">
                     <table className="w-full  text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                               <tr>
@@ -55,13 +73,27 @@ export default function Cart() {
 }
 
 function ProductItemTable({ prod }: { prod: CartProduct }) {
+     const queryClient = useQueryClient()
+     const {mutate,isPending,data} = useMutation({mutationFn:deleteProduct,
+          onSuccess:(data)=>{
+               toast.success("Product Deleted")
+               queryClient.invalidateQueries({queryKey:['cart']})
+
+          },
+          onError:()=>{
+               toast.error('Login First')
+          }
+     })
+     console.log(data)
      return (
 
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
                <td className="p-4">
-                    <Image src={prod.product.imageCover} width={100} height={100} alt="Apple Watch" />
+                    <Link href={`/product/${prod.product._id}`}>
+                         <Image src={prod.product.imageCover} width={100} height={100} alt="Apple Watch" />
+                    </Link>
                </td>
-               <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+               <td className=" py-4 font-semibold text-gray-900 dark:text-white">
                     {prod.product.title}
                </td>
                <td className="px-6 py-4">
@@ -87,7 +119,9 @@ function ProductItemTable({ prod }: { prod: CartProduct }) {
                     {prod.price}     EGP
                </td>
                <td className="px-6 py-4">
-                    <i className='fa-solid fa-trash text-red-800'></i>
+                    <span onClick={()=>mutate(prod.product._id)} className='text-xl'>
+                    {isPending?<i className='fa-solid fa-spin fa-spinner text-red-700'></i> :<i className='fa-solid fa-trash text-red-800'></i>}
+                    </span>
                </td>
           </tr>)
 }

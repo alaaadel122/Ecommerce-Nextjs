@@ -2,10 +2,11 @@
 import { addProduct } from '@/app/shoppingCart/_actions/addProduct.action'
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify';
 
 export default function AddToCartBtn({ productId }: { productId: string }) {
+  const queryClient = useQueryClient()
   const { data, isError, error, mutate, isSuccess, isPending } = useMutation({
     mutationFn: async (id: string) => {
       const res = await fetch('/api/addProductCart', {
@@ -24,6 +25,7 @@ export default function AddToCartBtn({ productId }: { productId: string }) {
     },
     onSuccess: (data) => {
       toast.success(data?.message || 'Added to cart ✅')
+      queryClient.invalidateQueries({queryKey:['cart']})
     },
     onError: (err: any) => {
       toast.error(err.message || 'Something went wrong ❌')
