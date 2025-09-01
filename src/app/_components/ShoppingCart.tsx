@@ -12,9 +12,9 @@ export default function ShoppingCart() {
           }
      })
      return (
-          <div>
+          <div className='relative'>
                <i  className='relative fa-solid fa-cart-shopping fa-xl' ></i>
-               <div className='absolute top-0 right-1 size-5 flex justify-center items-center bg-main rounded-full '>
+               <div className='absolute bottom-3 left-3 size-5 flex justify-center items-center bg-main rounded-full '>
                     <span className='text-light cart-counter'>{data?.numOfCartItems}</span>
                </div>
 

@@ -13,6 +13,7 @@ import { deleteProduct } from '../_actions/deleteProduct.action'
 import { da } from 'zod/v4/locales'
 import ClearBtn from './ClearBtn'
 import { updateCount } from '../_actions/updateProductCount.action'
+import CheckOut from './CheckOut'
 export default function Cart() {
      const { data, isLoading, isError } = useQuery({
           queryKey: ['cart'], queryFn: async () => {
@@ -31,7 +32,7 @@ export default function Cart() {
 
      return (
 
-          <div className='container  mx-auto py-5'>
+          <div className='container   mx-auto py-5'>
                <div className='flex justify-between w-[80%] mx-auto'>
                     <div>
                          <h2>Total Cart Price : <span className='text-main text-2xl'>{data?.data.totalCartPrice}EGP</span> </h2>
@@ -67,6 +68,9 @@ export default function Cart() {
 
                          </tbody>
                     </table>
+               </div>
+               <div className='ml-35 mt-10'>
+                    <CheckOut/>
                </div>
           </div>
 
