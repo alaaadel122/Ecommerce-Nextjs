@@ -5,13 +5,14 @@ import { ProductInterface } from '@/interfaces/product.interface'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import cartImage from '@/assets/images/empty-shopping-cart-illustration-concept-on-white-background-vector.jpg'
 import { ClearCart } from '../_actions/clearCart.action'
 import { toast } from 'react-toastify'
 import { deleteProduct } from '../_actions/deleteProduct.action'
 import { da } from 'zod/v4/locales'
 import ClearBtn from './ClearBtn'
+import { updateCount } from '../_actions/updateProductCount.action'
 export default function Cart() {
      const { data, isLoading, isError } = useQuery({
           queryKey: ['cart'], queryFn: async () => {
@@ -37,7 +38,7 @@ export default function Cart() {
                          <h3>Number of Cart items : <span className='text-main text-2xl'>{data?.numOfCartItems}</span></h3>
                     </div>
                     <div className='mt-5'>
-                         <ClearBtn/>
+                         <ClearBtn />
                     </div>
                </div>
                <div className="relative w-[80%] mx-auto mt-5 overflow-x-auto shadow-md sm:rounded-lg">
@@ -74,16 +75,41 @@ export default function Cart() {
 
 function ProductItemTable({ prod }: { prod: CartProduct }) {
      const queryClient = useQueryClient()
-     const {mutate,isPending,data} = useMutation({mutationFn:deleteProduct,
-          onSuccess:(data)=>{
+     const { mutate, isPending, data } = useMutation({
+          mutationFn: deleteProduct,
+          onSuccess: (data) => {
                toast.success("Product Deleted")
-               queryClient.invalidateQueries({queryKey:['cart']})
+               queryClient.invalidateQueries({ queryKey: ['cart'] })
 
           },
-          onError:()=>{
+          onError: () => {
                toast.error('Login First')
           }
      })
+     const [pendingType, setPendingType] = useState<null | 'inc' | 'dec'>(null);
+     const { mutate: updateMutate, isPending: updatePending } = useMutation({
+          mutationFn: updateCount,
+          onMutate: (variables) => {
+               setPendingType(variables.count > prod.count ? 'inc' : 'dec');
+          },
+          onSettled: () => {
+               setPendingType(null);
+          },
+          onError: () => {
+               toast.error('Login First')
+          },
+          onSuccess: (data) => {
+               toast.success('Cart is Updated succussfully')
+               queryClient.invalidateQueries({ queryKey: ['cart'] })
+          }
+     })
+     function handleIncrease() {
+          prod.count < prod.product.quantity ? updateMutate({ productId: prod.product._id, count: prod.count + 1 }) : 'Not Avilable'
+     }
+     function handleDecrease() {
+          prod.count > 1 ? updateMutate({ productId: prod.product._id, count: prod.count - 1 }) : mutate(prod.product._id)
+     }
+
      console.log(data)
      return (
 
@@ -98,20 +124,29 @@ function ProductItemTable({ prod }: { prod: CartProduct }) {
                </td>
                <td className="px-6 py-4">
                     <div className="flex items-center">
-                         <button className="inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+                         <button onClick={handleDecrease} className="inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
                               <span className="sr-only">Quantity button</span>
-                              <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-                                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M1 1h16" />
-                              </svg>
+                              <span className="sr-only">Quantity button</span>
+                              {updatePending && pendingType === 'dec' ? (
+                                   <i className='fa-solid fa-spinner fa-spin'></i>
+                              ) : (
+                                   <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M1 1h16" />
+                                   </svg>
+                              )}
                          </button>
                          <div>
                               <span className=''>{prod.count}</span>
                          </div>
-                         <button className="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+                         <button onClick={handleIncrease} className="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
                               <span className="sr-only">Quantity button</span>
-                              <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 1v16M1 9h16" />
-                              </svg>
+                              {updatePending && pendingType === 'inc' ? (
+                                   <i className='fa-solid fa-spinner fa-spin'></i>
+                              ) : (
+                                   <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 1v16M1 9h16" />
+                                   </svg>
+                              )}
                          </button>
                     </div>
                </td>
@@ -119,8 +154,8 @@ function ProductItemTable({ prod }: { prod: CartProduct }) {
                     {prod.price}     EGP
                </td>
                <td className="px-6 py-4">
-                    <span onClick={()=>mutate(prod.product._id)} className='text-xl'>
-                    {isPending?<i className='fa-solid fa-spin fa-spinner text-red-700'></i> :<i className='fa-solid fa-trash text-red-800'></i>}
+                    <span onClick={() => mutate(prod.product._id)} className='text-xl'>
+                         {isPending ? <i className='fa-solid fa-spin fa-spinner text-red-700'></i> : <i className='fa-solid fa-trash text-red-800'></i>}
                     </span>
                </td>
           </tr>)

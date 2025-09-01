@@ -3,7 +3,7 @@
 import { getTokenAuth } from "@/utilites/getTokenAuth"
 
 
-export async function addProduct(productId:string) {
+export async function updateCount({productId,count}:{productId:string,count:number}) {
      
      const token = await getTokenAuth()
      console.log("=========",token)
@@ -16,7 +16,7 @@ export async function addProduct(productId:string) {
                'Content-type':'application/json',
                token:String(token)
           },
-         
+         body:JSON.stringify({count})
 
      })
      console.log(res)
