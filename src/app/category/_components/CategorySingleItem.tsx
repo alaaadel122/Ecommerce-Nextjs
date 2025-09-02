@@ -1,12 +1,10 @@
 "use client"
+import { CatergoriesInterface } from "@/interfaces/categories.interface"
 import { motion } from "framer-motion"
-import { CatergoriesInterface } from '@/app/category/typescript/categories.interface'
 import Image from 'next/image'
-import { fa } from "zod/v4/locales"
-import { grtSpecificCategory } from "@/apis/spicificCategory"
 import Link from "next/link"
 
-export default  function CategorySingleItem({ category }: { category: CatergoriesInterface}) {
+export default  function CategorySingleItem({ catergoryId,category }: { category: CatergoriesInterface,catergoryId:string}) {
     
      return (
     <motion.div

@@ -1,7 +1,7 @@
 import { grtAllCategory } from '@/apis/categories.api'
-import { CatergoriesInterface } from '@/app/category/typescript/categories.interface'
 import React from 'react'
 import CategorySingleItem from './CategorySingleItem'
+import { CatergoriesInterface } from '@/interfaces/categories.interface'
 
 export default async function CategorySlider() {
      const data: CatergoriesInterface[] = await grtAllCategory()
