@@ -4,8 +4,8 @@ import React from 'react'
 import ProductDetails from '../_components/ProductDetails';
 
 //SSR comp
-export default async function ProductPage(props: any) {
-  const { id } = props.params as { id: string };
+export default async function ProductPage({params}:{params:Promise<{id:string}>}) {
+  const { id } = await params
   const data: ProductInterface = await getSingleProduct(id);
 
   return <ProductDetails prod={data} key={data._id} />;

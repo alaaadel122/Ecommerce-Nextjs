@@ -7,13 +7,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import cartImage from '@/assets/images/empty-shopping-cart-illustration-concept-on-white-background-vector.jpg'
-import { ClearCart } from '../_actions/clearCart.action'
 import { toast } from 'react-toastify'
 import { deleteProduct } from '../_actions/deleteProduct.action'
-import { da } from 'zod/v4/locales'
 import ClearBtn from './ClearBtn'
 import { updateCount } from '../_actions/updateProductCount.action'
-import CheckOut from './CheckOut'
 export default function Cart() {
      const { data, isLoading, isError } = useQuery({
           queryKey: ['cart'], queryFn: async () => {
@@ -70,7 +67,11 @@ export default function Cart() {
                     </table>
                </div>
                <div className='ml-35 mt-10'>
-                    <CheckOut/>
+                    <button className='btn bg-main text-white min-w-[50px] md:min-w-[150px]' >
+                         <Link href={`/checkout/${data?.cartId}`} >
+                              CheckOut
+                         </Link>
+                    </button>
                </div>
           </div>
 
