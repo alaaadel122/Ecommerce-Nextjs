@@ -10,7 +10,7 @@ export async function checkoutOnline(cartId: string , url=process.env.NEXT_URL, 
      const token = await getTokenAuth();
      if (!token)
           throw new Error('Unauthorized ,Login first')
-     const res = await fetch(`${process.env.API}/orders/checkout-session${cartId}?url=${url}`, {
+     const res = await fetch(`${process.env.API}/orders/checkout-session/${cartId}?url=${url}`, {
           cache: 'no-store',
           method: 'POST',
           headers: {

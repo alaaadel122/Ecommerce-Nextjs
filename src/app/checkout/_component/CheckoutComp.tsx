@@ -14,12 +14,15 @@ export default function CheckoutComp({cartId}:{cartId:string}) {
                details:'',
                city:'',
                phone:''
-          }
+          },
+          
      })
     async function onSubmit(data:addressSchemaForm) {
           const shippingAddress = data
           const res = await checkoutOnline(cartId,'',shippingAddress)
-          return res
+          if(res.status == 'success')
+               window.location.href=res?.session?.url
+          
      }
      return (
           <Form {...form}>
