@@ -76,7 +76,7 @@ export default function Login() {
                     </form>
                </Form>
                <div className='flex justify-between w-full mx-auto py-5 '>
-                    <p className=''><Link href={'/auth/register'} className=''>Forget Password?</Link></p>
+                    <p className=''><Link href={'/forgetpassword'} className=''>Forget Password?</Link></p>
                     <p className=''>Create  account ? <Link href={'/auth/register'} className='text-main text-xl '>Register</Link></p>
                </div>
           </div>

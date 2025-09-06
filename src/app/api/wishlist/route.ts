@@ -2,15 +2,18 @@ import { getTokenAuth } from "@/utilites/getTokenAuth";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
-     const token = await getTokenAuth()
-          console.log("=========",token)
+  const token = await getTokenAuth()
+  console.log("=========", token)
+  if (!token) {
+    return NextResponse.json({ error: "Unauthorized, login first" }, { status: 401 });
+  }
   try {
-   // جرب تنادي API بتاعك
+    // جرب تنادي API بتاعك
     const res = await fetch(`${process.env.API}/wishlist`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-         token: String(token)
+        token: String(token)
       },
     });
 
