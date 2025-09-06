@@ -15,6 +15,7 @@ export default function Navbar() {
           { path: '/product', element: "product" },
           { path: '/category', element: "category" },
           { path: '/brands', element: "brands" },
+          {path:'/whishlist',element:'wishlist'}
      ]
 
      return (

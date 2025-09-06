@@ -1,11 +1,10 @@
 'use client'
-import { addProduct } from '@/app/shoppingCart/_actions/addProduct.action'
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify';
 
-export default function AddToCartBtn({ productId }: { productId: string }) {
+export default function AddToCartBtn({ productId , onSuccess ,label}: { productId: string, onSuccess?: () => void ,label:string}) {
   const queryClient = useQueryClient()
   const { data, isError, error, mutate, isSuccess, isPending } = useMutation({
     mutationFn: async (id: string) => {
@@ -19,13 +18,15 @@ export default function AddToCartBtn({ productId }: { productId: string }) {
 
       if (!res.ok) {
         const err = await res.json()
-        throw new Error(err.error || 'Something went wrong')
+        throw new Error(err?.message || 'Failed to add product')
       }
+
       return res.json()
     },
     onSuccess: (data) => {
       toast.success(data?.message || 'Added to cart ✅')
-      queryClient.invalidateQueries({queryKey:['cart']})
+      queryClient.invalidateQueries({ queryKey: ['cart'] })
+      onSuccess?.()
     },
     onError: (err: any) => {
       toast.error(err.message || 'Something went wrong ❌')
@@ -34,6 +35,6 @@ export default function AddToCartBtn({ productId }: { productId: string }) {
 
 
   return (
-    <Button className='btn btn-main hover:scale-100 mt-5 min-w-[120px]' onClick={() => mutate(productId)}>{isPending ? <i className="fa-solid fa-spinner fa-spin"></i> : 'Add to cart'}</Button>
+    <Button className='btn btn-main hover:scale-100 mt-5 min-w-[120px]' onClick={() => mutate(productId)}>{isPending ? <i className="fa-solid fa-spinner fa-spin"></i> : label}</Button>
   )
 }

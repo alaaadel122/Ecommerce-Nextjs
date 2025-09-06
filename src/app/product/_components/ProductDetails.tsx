@@ -4,7 +4,7 @@ import { ProductInterface } from '@/interfaces/product.interface'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import Button from './addToCartBtn'
-import Favorite from './Favorite'
+import Favorite from './WhishIcon'
 import AddToCartBtn from './addToCartBtn'
 
 export default function ProductDetails({ prod }: { prod: ProductInterface }) {
@@ -76,8 +76,8 @@ export default function ProductDetails({ prod }: { prod: ProductInterface }) {
                          </button>
                     </div>
                     <div className='flex'>
-                    <AddToCartBtn productId={prod._id}></AddToCartBtn>
-                    <Favorite></Favorite>
+                         <AddToCartBtn productId={prod._id}  label="Add to cart"></AddToCartBtn>
+                         <Favorite productId={prod._id}></Favorite>
                     </div>
                </div>
           </div>
