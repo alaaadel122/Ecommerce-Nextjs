@@ -1,14 +1,12 @@
-import { getTokenAuth } from "@/utilites/getTokenAuth";
-import { NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: Request) {
-  const token = await getTokenAuth()
-  console.log("=========", token)
-  if (!token) {
-    return NextResponse.json({ error: "Unauthorized, login first" }, { status: 401 });
-  }
+export async function GET(req: NextRequest) {
+  const token = await getToken({ req })
+  if (!token)
+    return NextResponse.json({ status: 401, error: "Unautherized" })
   try {
-    // جرب تنادي API بتاعك
+
     const res = await fetch(`${process.env.API}/wishlist`, {
       method: "GET",
       headers: {
