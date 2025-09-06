@@ -2,9 +2,9 @@ import { getTokenAuth } from "@/utilites/getTokenAuth";
 import { NextResponse } from "next/server";
 
 // هنا نستقبل الـ productId من الـ URL
-export async function DELETE(req: Request, { params }: {params:Promise<{productId:string}>}) {
+export async function DELETE(req: Request, context: { params: { productId: string } }) {
   const token = await getTokenAuth();
-  const { productId } = await params // id distrct from folder [id] so i can't change the name 
+  const { productId } =  context.params // id distrct from folder [id] so i can't change the name 
 
   if (!token) {
     return NextResponse.json({ error: "Unauthorized, login first" }, { status: 401 });
