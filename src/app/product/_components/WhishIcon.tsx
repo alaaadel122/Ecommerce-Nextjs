@@ -69,8 +69,8 @@ export default function Favorite({ productId }: { productId: string }) {
         <i className="fa-solid fa-spinner fa-spin text-main"></i>
       ) : (
         <i
-          className={`fa-solid fa-heart ${
-            isInWishlist ? 'text-red-700' : 'text-main'
+          className={` fa-heart ${
+            isInWishlist ? 'fa-solid text-red-700' : 'fa-regular text-main'
           }`}
         ></i>
       )}
