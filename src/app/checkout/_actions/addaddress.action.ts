@@ -6,7 +6,7 @@ type shippingAddressType ={
      "phone":string,
      "city":string
 }
-export async function checkoutOnline(cartId: string , url=process.env.NEXT_URL, shippingAddress: shippingAddressType) {
+export async function checkoutOnline(cartId: string , url=process.env.NEXTAUTH_URL, shippingAddress: shippingAddressType) {
      const token = await getTokenAuth();
      if (!token)
           throw new Error('Unauthorized ,Login first')
