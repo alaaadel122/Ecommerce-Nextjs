@@ -10,4 +10,3 @@ import * as z from "zod";
      message:'Not Match Password'
  })
 export type registerSchemaForm = z.infer<typeof registerSchema> 
-//.regex(/(002)^(01)[0-25]\d{8}$/)

@@ -20,7 +20,7 @@ export default function WishList() {
      if (isLoading) {
           return <Loading />
      }
-     if (data.count == 0)
+     if (data?.count == 0)
           return <div className='w-full m-auto flex justify-center items-center'>
                <Image alt='emptycart' width={400} height={400} src={wishlistImg} />
           </div>
