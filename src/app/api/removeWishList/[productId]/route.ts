@@ -2,7 +2,7 @@ import { getTokenAuth } from "@/utilites/getTokenAuth";
 import { NextResponse } from "next/server";
 
 // هنا نستقبل الـ productId من الـ URL
-export async function DELETE(req: Request, context: { params: Record<string, string> }) {
+export async function DELETE(req: Request,context: any) {
   const token = await getTokenAuth();
   const { productId } =  context.params // id distrct from folder [id] so i can't change the name 
 
