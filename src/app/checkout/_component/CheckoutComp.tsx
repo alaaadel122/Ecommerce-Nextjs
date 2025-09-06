@@ -19,7 +19,7 @@ export default function CheckoutComp({cartId}:{cartId:string}) {
      })
     async function onSubmit(data:addressSchemaForm) {
           const shippingAddress = data
-          const res = await checkoutOnline(cartId,'',shippingAddress)
+          const res = await checkoutOnline(cartId,undefined,shippingAddress)
           if(res.status == 'success')
                window.location.href=res?.session?.url
           
