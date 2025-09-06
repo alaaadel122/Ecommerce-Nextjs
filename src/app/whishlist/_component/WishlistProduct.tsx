@@ -16,7 +16,7 @@ export default function WishlistProduct({ prod }: { prod: ProductInterface }) {
      })
      const queryClient = useQueryClient()
 
-     const { mutate: removeFromWishlist } = useMutation({
+     const { mutate } = useMutation({
           mutationFn: async (id: string) => {
                const res = await fetch(`/api/removeWishList/${id}`, { method: 'DELETE' })
                if (!res.ok) throw new Error('Failed to remove from wishlist ❌')
@@ -29,7 +29,7 @@ export default function WishlistProduct({ prod }: { prod: ProductInterface }) {
 
      // ✅ callback عند نجاح الإضافة للكارت
      const handleAddToCartSuccess = () => {
-          removeFromWishlist(prod._id) // يشيل من الـ wishlist بعد ما يتضاف للكارت
+          mutate(prod._id) 
      }
      return (
           <motion.div
