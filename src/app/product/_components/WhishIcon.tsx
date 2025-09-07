@@ -27,7 +27,6 @@ export default function Favorite({ productId }: { productId: string }) {
   const { mutate, isPending } = useMutation({
     mutationFn: async (productId: string) => {
       if (isInWishlist) {
-        // 🔴 remove → productId في الـ URL
         const res = await fetch(`/api/removeWishList/${productId}`, {
           method: 'DELETE',
         })
@@ -45,7 +44,7 @@ export default function Favorite({ productId }: { productId: string }) {
         })
         if (!res.ok) {
           const err = await res.json()
-          throw new Error(err.error || 'Failed to add ❌')
+          throw new Error(err.error.message || 'Failed to add ❌')
         }
         return res.json()
       }
