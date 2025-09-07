@@ -4,7 +4,6 @@ import CategorySingleItem from './_components/CategorySingleItem'
 import { CatergoriesInterface } from '@/interfaces/categories.interface'
 
 const data: CatergoriesInterface[] = await grtAllCategory()
-console.log("Categories:", data) // ده هيبان في Server Logs
 export default async function Page() {
 
   return (

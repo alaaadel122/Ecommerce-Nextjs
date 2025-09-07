@@ -115,7 +115,6 @@ function ProductItemTable({ prod }: { prod: CartProduct }) {
           prod.count > 1 ? updateMutate({ productId: prod.product._id, count: prod.count - 1 }) : mutate(prod.product._id)
      }
 
-     console.log(data)
      return (
 
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">

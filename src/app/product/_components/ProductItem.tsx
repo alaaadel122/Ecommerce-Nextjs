@@ -15,9 +15,6 @@ export default function ProductItem({ prod }: { prod: ProductInterface }) {
           triggerOnce: false,
           threshold: 0.2,
      })
-     function productDetail() {
-          console.log('helo')
-     }
      return (
           <motion.div
                ref={ref}

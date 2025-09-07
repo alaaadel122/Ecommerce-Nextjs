@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 export default async function RelatedProduct({ categoryId }: { categoryId: string }) {
      const data = await RelatedProducts(categoryId)
-     console.log(data)
      return (
           <div className='container mx-auto'>
                <h3 className="text-gray-700 text-2xl after:ml-0.5 before:text-main before:content-['|'] my-5">Products related to this item</h3>

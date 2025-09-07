@@ -14,7 +14,6 @@ export async function GET(req: NextRequest) {
           },
      }
      )
-     console.log(JSON.stringify(token.token))
      const payload = await res.json()
      return NextResponse.json(payload)
 }

@@ -6,7 +6,6 @@ import { getTokenAuth } from "@/utilites/getTokenAuth"
 export async function updateCount({productId,count}:{productId:string,count:number}) {
      
      const token = await getTokenAuth()
-     console.log("=========",token)
      if(!token)
           throw new Error('Unathourizes  , Login First')
      const res = await fetch(`${process.env.API}/cart/${productId}`,{
@@ -19,7 +18,6 @@ export async function updateCount({productId,count}:{productId:string,count:numb
          body:JSON.stringify({count})
 
      })
-     console.log(res)
      const payload  = await res.json()
      return payload
 }

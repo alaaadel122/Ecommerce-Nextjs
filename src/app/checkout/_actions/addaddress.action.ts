@@ -22,6 +22,5 @@ export async function checkoutOnline(cartId: string , url=process.env.NEXTAUTH_U
           })
      })
      const data = await res.json()
-     console.log(data)
      return data
 }

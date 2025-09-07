@@ -6,7 +6,6 @@ import { getTokenAuth } from "@/utilites/getTokenAuth"
 export async function deleteProduct(productId:string) {
      
      const token = await getTokenAuth()
-     console.log("=========",token)
      if(!token)
           throw new Error('Unathourizes  , Login First')
      const res = await fetch(`${process.env.API}/cart/${productId}`,{
@@ -18,7 +17,6 @@ export async function deleteProduct(productId:string) {
           },
 
      })
-     console.log(res)
      const payload  = await res.json()
      return payload
 }

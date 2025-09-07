@@ -23,7 +23,6 @@ export const authOptions: NextAuthOptions = {
         });
 
         const payload = await res.json();
-        console.log(payload);
 
         if (payload.message === "success") {
           const decode = JSON.parse(
