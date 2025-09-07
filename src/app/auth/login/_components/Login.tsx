@@ -23,7 +23,7 @@ export default function Login() {
           const res = await signIn('credentials', {
                email: data.email,
                password: data.password,
-               redirect: false,   // ❗️ خليها false
+               redirect: true,     
           })
           if (res?.ok) {
                router.push('/')
