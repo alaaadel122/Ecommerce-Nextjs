@@ -2,9 +2,11 @@
 import React from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
+import { useSession } from 'next-auth/react'
 
 export default function Favorite({ productId }: { productId: string }) {
   const queryClient = useQueryClient()
+  const { data: session, status } = useSession();
 
   // ✅ 1. fetch wishlist
   const { data: wishlist } = useQuery({
@@ -13,7 +15,9 @@ export default function Favorite({ productId }: { productId: string }) {
       const res = await fetch('/api/wishlist', { cache: 'no-store' })
       if (!res.ok) throw new Error('Failed to fetch wishlist ❌')
       return res.json()
-    }
+    },
+    enabled: !!session,
+
   })
 
   // ✅ 2. check if product exists
@@ -21,7 +25,7 @@ export default function Favorite({ productId }: { productId: string }) {
 
   // ✅ 3. toggle mutation
   const { mutate, isPending } = useMutation({
-    mutationFn: async (productId:string) => {
+    mutationFn: async (productId: string) => {
       if (isInWishlist) {
         // 🔴 remove → productId في الـ URL
         const res = await fetch(`/api/removeWishList/${productId}`, {
@@ -49,7 +53,7 @@ export default function Favorite({ productId }: { productId: string }) {
     onSuccess: (data) => {
       toast.success(
         data?.message ||
-          (isInWishlist ? 'Removed from wishlist ❌' : 'Added to wishlist ✅')
+        (isInWishlist ? 'Removed from wishlist ❌' : 'Added to wishlist ✅')
       )
       queryClient.invalidateQueries({ queryKey: ['wishlist'] })
     },
@@ -69,9 +73,8 @@ export default function Favorite({ productId }: { productId: string }) {
         <i className="fa-solid fa-spinner fa-spin text-main"></i>
       ) : (
         <i
-          className={` fa-heart ${
-            isInWishlist ? 'fa-solid text-red-700' : 'fa-regular text-main'
-          }`}
+          className={` fa-heart ${isInWishlist ? 'fa-solid text-red-700' : 'fa-regular text-main'
+            }`}
         ></i>
       )}
     </button>

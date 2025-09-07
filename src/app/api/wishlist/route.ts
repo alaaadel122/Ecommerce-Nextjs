@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
   const token = await getTokenAuth()
-  console.log("=========", token)
   if (!token) {
     return NextResponse.json({ error: "Unauthorized, login first" }, { status: 401 });
   }

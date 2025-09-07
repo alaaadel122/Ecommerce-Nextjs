@@ -8,6 +8,7 @@ import { ProductInterface } from '@/interfaces/product.interface'
 import AddToCartBtn from '@/app/product/_components/addToCartBtn'
 import Favorite from '@/app/product/_components/WhishIcon'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import Link from 'next/link'
 
 export default function WishlistProduct({ prod }: { prod: ProductInterface }) {
      const [ref, inView] = useInView({
@@ -43,6 +44,7 @@ export default function WishlistProduct({ prod }: { prod: ProductInterface }) {
 
                     {/* صورة المنتج */}
                     <div className="flex-shrink-0 text-center">
+                         <Link href={`/product/${prod._id}`}>
                          <Image
                               width={120}
                               height={120}
@@ -50,6 +52,7 @@ export default function WishlistProduct({ prod }: { prod: ProductInterface }) {
                               alt={prod.title}
                               className="w-28 h-28 object-cover rounded-lg"
                          />
+                         </Link>
                     </div>
 
                     {/* بيانات المنتج */}

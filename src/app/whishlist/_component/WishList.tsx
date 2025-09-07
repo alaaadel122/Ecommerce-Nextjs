@@ -6,17 +6,24 @@ import WishlistProduct from './WishlistProduct'
 import Loading from '@/app/_components/Loading'
 import Image from 'next/image'
 import wishlistImg from '@/assets/images/empty-wishlist.png'
+import { useSession } from 'next-auth/react'
 export default function WishList() {
-     const { data ,isLoading} = useQuery({
+     const { data: session, status } = useSession();
+
+     const { data, isLoading } = useQuery({
           queryKey: ['wishlist'],
           queryFn: async () => {
                const res = await fetch('/api/wishlist', { cache: 'no-store', method: 'GET' })
                if (!res.ok) throw new Error('Failed to fetch wishlist ❌')
                return res.json()
-          }
-          
+          },
+          enabled: !!session,
+
      })
-     console.log(data)
+     if (status === "loading") {
+          return <Loading />; // لحد ما session تتحسم
+     }
+
      if (isLoading) {
           return <Loading />
      }
@@ -26,7 +33,7 @@ export default function WishList() {
           </div>
      return (
           <div className='flex flex-wrap gap-7 w-[90%] mx-auto justify-center'>
-               {data?.data?.map((prod :ProductInterface )=> <WishlistProduct key={prod._id} prod={prod} />)}
+               {data?.data?.map((prod: ProductInterface) => <WishlistProduct key={prod._id} prod={prod} />)}
           </div>
      )
 }
