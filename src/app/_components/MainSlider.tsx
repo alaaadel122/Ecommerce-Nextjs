@@ -7,8 +7,8 @@ import { Autoplay } from 'swiper/modules'
 import slider1 from '../../assets/images/slider-image-1.jpeg'
 import slider2 from '../../assets/images/slider-image-2.jpeg'
 import slider3 from '../../assets/images/slider-image-3.jpeg'
-import blog1 from '../../assets/images/blog-img-1.jpeg'
-import blog2 from '../../assets/images/blog-img-2.jpeg'
+import blog1 from '../../assets/images/blog-Image-1.jpeg'
+import blog2 from '../../assets/images/blog-Image-2.jpeg'
 import Image from 'next/image';
 
 
@@ -30,20 +30,20 @@ export default function MainSlider() {
           }}
         >
           <SwiperSlide>
-            <img src={slider1} alt="slider1" className='w-full h-[400px] object-cover'/>
+            <Image src={slider1} alt="slider1" className='w-full h-[400px] object-cover'/>
           </SwiperSlide>
           <SwiperSlide>
-            <img src={slider2} alt="slider2" className='w-full h-[400px] object-cover' />
+            <Image src={slider2} alt="slider2" className='w-full h-[400px] object-cover' />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={slider3} alt="slider3"  className='w-full h-[400px] object-cover'/>
+            <Image src={slider3} alt="slider3"  className='w-full h-[400px] object-cover'/>
           </SwiperSlide>
         </Swiper>
       </div>
 
       <div className='w-1/4 flex flex-col '>
-        <img src={blog1} alt="blog1" className='h-[200px] object-cover'/>
-        <img src={blog2} alt="blog2"  className='h-[200px] object-cover'/>
+        <Image src={blog1} alt="blog1" className='h-[200px] object-cover'/>
+        <Image src={blog2} alt="blog2"  className='h-[200px] object-cover'/>
       </div>
     </div>
   )
