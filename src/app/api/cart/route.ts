@@ -1,19 +1,17 @@
-import { error } from "console";
-import { getToken } from "next-auth/jwt";
-import { NextRequest, NextResponse } from "next/server";
+import { getTokenAuth } from "@/utilites/getTokenAuth";
+import { NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
-     const token = await getToken({ req , secret: process.env.NEXTAUTH_SECRET })
-     if (!token)
-          return NextResponse.json({ status: 401, error: "Unautherized" })
-     const res = await fetch(`${process.env.API}/cart`, {
-          cache: 'no-store',
-          method: 'GET',
-          headers: {
-               token: token.token
-          },
-     }
-     )
-     const payload = await res.json()
-     return NextResponse.json(payload)
+export async function GET() {
+  const token = await getTokenAuth();
+  if (!token) {
+    return NextResponse.json({ status: 401, error: "Unauthorized" });
+  }
+
+  const res = await fetch(`${process.env.API}/cart`, {
+    cache: "no-store",
+    headers: { token },
+  });
+
+  const payload = await res.json();
+  return NextResponse.json(payload);
 }
