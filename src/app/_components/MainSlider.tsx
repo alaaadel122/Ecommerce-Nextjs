@@ -30,20 +30,20 @@ export default function MainSlider() {
           }}
         >
           <SwiperSlide>
-            <Image src={slider1} alt="slider1" className='w-full h-[400px] object-cover'/>
+            <img src={slider1} alt="slider1" className='w-full h-[400px] object-cover'/>
           </SwiperSlide>
           <SwiperSlide>
-            <Image src={slider2} alt="slider2" className='w-full h-[400px] object-cover' />
+            <img src={slider2} alt="slider2" className='w-full h-[400px] object-cover' />
           </SwiperSlide>
           <SwiperSlide>
-            <Image src={slider3} alt="slider3"  className='w-full h-[400px] object-cover'/>
+            <img src={slider3} alt="slider3"  className='w-full h-[400px] object-cover'/>
           </SwiperSlide>
         </Swiper>
       </div>
 
       <div className='w-1/4 flex flex-col '>
-        <Image src={blog1} alt="blog1" className='h-[200px] object-cover'/>
-        <Image src={blog2} alt="blog2"  className='h-[200px] object-cover'/>
+        <img src={blog1} alt="blog1" className='h-[200px] object-cover'/>
+        <img src={blog2} alt="blog2"  className='h-[200px] object-cover'/>
       </div>
     </div>
   )
