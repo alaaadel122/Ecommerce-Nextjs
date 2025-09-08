@@ -45,7 +45,7 @@ export default function WishlistProduct({ prod }: { prod: ProductInterface }) {
                     {/* صورة المنتج */}
                     <div className="flex-shrink-0 text-center">
                          <Link href={`/product/${prod._id}`}>
-                         <Image
+                         <img
                               width={120}
                               height={120}
                               src={prod.imageCover}
