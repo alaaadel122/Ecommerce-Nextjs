@@ -29,7 +29,7 @@ export default function WishList() {
      }
      if (data?.count == 0)
           return <div className='w-full m-auto flex justify-center items-center'>
-               <img alt='emptycart' width={400} height={400} src={wishlistImg} />
+               <Image alt='emptycart' width={400} height={400} src={wishlistImg} />
           </div>
      return (
           <div className='flex flex-wrap gap-7 w-[90%] mx-auto justify-center'>

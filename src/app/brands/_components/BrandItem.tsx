@@ -7,7 +7,7 @@ export default function BrandItem({brand}:{brand:BrandInterface}) {
   return (
     <div className=''>
      <div className='mx-auto flex justify-center border-1 border-gray-300  relative overflow-hidden'>
-          <img src={brand.image} width={150} height={150} alt="brand" className='object-contain'/>
+          <Image src={brand.image} width={150} height={150} alt="brand" className='object-contain'/>
      </div>
     </div>
   )

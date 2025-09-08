@@ -27,7 +27,7 @@ export default function ProductItem({ prod }: { prod: ProductInterface }) {
                     {/* صورة وبيانات المنتج */}
                     <div className="p-5 text-center">
                          <Link href={`/product/${prod._id}`}>
-                              <img
+                              <Image
                                    width={300}
                                    height={200}
                                    src={prod.imageCover}

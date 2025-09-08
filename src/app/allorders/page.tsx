@@ -1,6 +1,7 @@
 import React from "react";
 import { getUserOrders } from "./_actions/getUserOrder.action";
 import { singleOrder } from "./interfaces/allOrders.interface";
+import Image from "next/image";
 
 export default async function Page() {
   const orders: singleOrder[] = await getUserOrders();

@@ -15,7 +15,7 @@ export default  function CategorySingleItem({ catergoryId,category }: { category
       
     >
      <Link  href={`/category/${category._id}`} className="flex items-center gap-4 bg-white shadow rounded-xl p-4 min-w-[200px] hover:scale-[1.05] transition-transform">
-      <img
+      <Image
         src={category.image}
         alt={category.name}
         className="w-16 h-16 object-cover rounded-lg"

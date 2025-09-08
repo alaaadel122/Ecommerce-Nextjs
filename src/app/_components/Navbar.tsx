@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 import ShoppingCart from './ShoppingCart';
-import logo from '@/assets/images/freshcart-logo.svg'
+import logo from '../../assets/images/freshcart-logo.svg'
 import Image from 'next/image';
 import { signOut, useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
@@ -33,7 +33,7 @@ export default function Navbar() {
         
         {/* Logo */}
         <Link href={'/'} className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src={logo} width={120} height={120} alt="Freshcart logo" />
+          <Image src={logo} width={120} height={120} alt="Freshcart logo" />
         </Link>
 
         {/* Hamburger menu */}

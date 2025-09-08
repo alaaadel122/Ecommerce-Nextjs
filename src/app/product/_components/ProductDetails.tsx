@@ -16,7 +16,7 @@ export default function ProductDetails({ prod }: { prod: ProductInterface }) {
                     {/* الصورة الرئيسية */}
                     <div className="flex-1">
                          <div className="relative w-full h-[400px] border rounded-lg">
-                              <img
+                              <Image
                                    src={activeImage}
                                    alt="Main product image"
                                    fill
@@ -34,7 +34,7 @@ export default function ProductDetails({ prod }: { prod: ProductInterface }) {
                                    className={`relative w-20 h-20 cursor-pointer border rounded-md ${activeImage === image ? 'border-blue-500' : 'border-gray-300'
                                         }`}
                               >
-                                   <img
+                                   <Image
                                         src={image}
                                         alt={`Thumbnail ${index}`}
                                         fill
