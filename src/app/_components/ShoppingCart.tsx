@@ -2,6 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { useQuery } from '@tanstack/react-query';
+import Loading from './Loading';
 
 export default function ShoppingCart() {
      const { data, isLoading, isError } = useQuery({
@@ -11,6 +12,8 @@ export default function ShoppingCart() {
                return res.json();
           }
      })
+     if(isLoading)
+          return <Loading/>
      return (
           <div className='relative'>
                <i  className='relative fa-solid fa-cart-shopping fa-xl' ></i>
