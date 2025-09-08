@@ -6,8 +6,8 @@ export default async function Page() {
   const orders: singleOrder[] = await getUserOrders();
 
   return (
-    <div className="space-y-6 p-4">
-      <h1 className="text-2xl font-bold mb-4">My Orders</h1>
+    <div className="w-[85%] mx-auto space-y-6 p-4">
+      <h1 className="text-gray-700 text-2xl after:ml-0.5 before:text-main before:content-['|'] my-5">My Orders</h1>
 
       {orders?.length === 0 && (
         <p className="text-gray-500">You have no orders yet.</p>
