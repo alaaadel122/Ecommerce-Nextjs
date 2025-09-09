@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="mb-6 md:mb-0">
             <Link href="https://flowbite.com/" className="flex items-center">
               <img
-                src={logo}
+                src={logo.src}
                 width={180}
                 height={180}
                 alt="Picture of the author"

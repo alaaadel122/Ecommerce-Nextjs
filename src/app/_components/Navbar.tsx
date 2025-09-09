@@ -33,7 +33,7 @@ export default function Navbar() {
         
         {/* Logo */}
         <Link href={'/'} className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src={logo} width={120} height={120} alt="Freshcart logo" />
+          <img src={logo.src} width={120} height={120} alt="Freshcart logo" />
         </Link>
 
         {/* Hamburger menu */}
