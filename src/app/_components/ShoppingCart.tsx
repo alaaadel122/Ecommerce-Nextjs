@@ -12,8 +12,7 @@ export default function ShoppingCart() {
                return res.json();
           }
      })
-     if(isLoading)
-          return <Loading/>
+    
      return (
           <div className='relative'>
                <i  className='relative fa-solid fa-cart-shopping fa-xl' ></i>

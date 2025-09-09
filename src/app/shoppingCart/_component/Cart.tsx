@@ -14,7 +14,7 @@ import { updateCount } from '../_actions/updateProductCount.action'
 export default function Cart() {
      const { data, isLoading, isError } = useQuery({
           queryKey: ['cart'], queryFn: async () => {
-               const res = await fetch('/api/cart');
+               const res = await fetch('/api/cart', { cache: 'no-store', method: 'GET' });
                if (!res.ok) throw new Error('Failed to fetch cart');
                return res.json();
           }
@@ -22,7 +22,7 @@ export default function Cart() {
      if (isLoading) {
           return <Loading />
      }
-     if (data.numOfCartItems == 0)
+     if (data?.numOfCartItems == 0)
           return <div className='w-full m-auto flex justify-center items-center'>
                <img alt='emptycart' width={700} height={700} src={cartImage.src} />
           </div>
