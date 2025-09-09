@@ -24,7 +24,7 @@ export default function Cart() {
      }
      if (data.numOfCartItems == 0)
           return <div className='w-full m-auto flex justify-center items-center'>
-               <Image alt='emptycart' width={700} height={700} src={cartImage} />
+               <img alt='emptycart' width={700} height={700} src={cartImage} />
           </div>
 
      return (
@@ -120,7 +120,7 @@ function ProductItemTable({ prod }: { prod: CartProduct }) {
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
                <td className="p-4">
                     <Link href={`/product/${prod.product._id}`}>
-                         <Image src={prod.product.imageCover} width={100} height={100} alt="Apple Watch" />
+                         <img src={prod.product.imageCover} width={100} height={100} alt="Apple Watch" />
                     </Link>
                </td>
                <td className=" py-4 font-semibold text-gray-900 dark:text-white">
