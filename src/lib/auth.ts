@@ -5,19 +5,6 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/auth/login",
   },
-  session: { strategy: "jwt", },
-  cookies: {
-    sessionToken: {
-      name: process.env.NODE_ENV === "production"
-        ? "__Secure-next-auth.session-token"
-        : "next-auth.session-token",
-      options: {
-        httpOnly: true,
-        sameSite: "none", path: "/",
-        secure: process.env.NODE_ENV === "production",
-      },
-    },
-  },
   providers: [
     Credentials({
       name: "credential",
@@ -36,6 +23,7 @@ export const authOptions: NextAuthOptions = {
         });
 
         const payload = await res.json();
+        console.log(payload);
 
         if (payload.message === "success") {
           const decode = JSON.parse(
