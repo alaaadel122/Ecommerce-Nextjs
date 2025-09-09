@@ -13,8 +13,7 @@ export const authOptions: NextAuthOptions = {
         : "next-auth.session-token",
       options: {
         httpOnly: true,
-        sameSite: "lax",   // جرّبي "none" كمان لو بتشتغلي مع cross-domain
-        path: "/",
+        sameSite: "none", path: "/",
         secure: process.env.NODE_ENV === "production",
       },
     },

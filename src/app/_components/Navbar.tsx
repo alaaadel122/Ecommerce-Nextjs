@@ -72,6 +72,7 @@ export default function Navbar() {
               >
                 Log Out <i className="fa-solid fa-arrow-right-from-bracket"></i>
               </button>
+              
             </>
           ) : (
             <Link href={'/auth/login'} className="block py-2 px-3 text-gray-500 rounded-sm md:mr-1">
