@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
      const token = await getTokenAuth()
+          console.log("=========",token)
   try {
     const body = await req.json();
     const { productId } = body;
