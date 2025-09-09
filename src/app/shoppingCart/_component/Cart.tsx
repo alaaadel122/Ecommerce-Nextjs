@@ -24,7 +24,7 @@ export default function Cart() {
      }
      if (data.numOfCartItems == 0)
           return <div className='w-full m-auto flex justify-center items-center'>
-               <img alt='emptycart' width={700} height={700} src={cartImage} />
+               <img alt='emptycart' width={700} height={700} src={cartImage.src} />
           </div>
 
      return (

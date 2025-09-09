@@ -1,9 +1,7 @@
 'use client'
 import Rating from '@/app/_components/Rating'
 import { ProductInterface } from '@/interfaces/product.interface'
-import Image from 'next/image'
 import React, { useState } from 'react'
-import Button from './addToCartBtn'
 import Favorite from './WhishIcon'
 import AddToCartBtn from './addToCartBtn'
 
@@ -19,7 +17,7 @@ export default function ProductDetails({ prod }: { prod: ProductInterface }) {
                               <img
                                    src={activeImage}
                                    alt="Main product image"
-                                   fill
+                                   
                                    className="object-contain rounded-lg"
                               />
                          </div>
@@ -37,7 +35,7 @@ export default function ProductDetails({ prod }: { prod: ProductInterface }) {
                                    <img
                                         src={image}
                                         alt={`Thumbnail ${index}`}
-                                        fill
+                                        
                                         className="object-cover rounded-md"
                                    />
                               </div>
