@@ -31,7 +31,6 @@ export default function Register() {
                const res = await addUser(data)
 
                if (res.token) {
-                    // لو رجع توكن يبقى التسجيل نجح → نجرب نعمل login
                     const loginRes = await signIn("credentials", {
                          redirect: false,
                          email: data.email,
@@ -40,9 +39,9 @@ export default function Register() {
                     })
 
                     if (loginRes?.error) {
-                         toast.error("خطأ في تسجيل الدخول بعد التسجيل")
+                         toast.error("Something went wrong, please try again later")
                     } else {
-                         toast.success("تم التسجيل والدخول بنجاح 🎉")
+                         toast.success("You Sign In successfuly ")
                          router.push("/") // أو أي صفحة تانية
                     }
                }
