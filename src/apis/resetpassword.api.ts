@@ -10,7 +10,6 @@ export async function restpassword(dataForm: resetPasswordSchemaForm) {
                },
                body: JSON.stringify(dataForm)
           });
-          console.log(res)
           if (!res.ok) {
                throw new Error("Failed to send verification code !");
           }

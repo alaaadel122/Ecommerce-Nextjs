@@ -21,7 +21,6 @@ export default function ForgetpasswordForm() {
      async function onSubmit(data: emailSchemaForm) {
           try {
                const res = await forgetpassword(data)
-               console.log(res)
                // لو كل حاجة تمام
                setEmailError(null);
                toast.success(res.message || "✅ Check your email for reset instructions!");

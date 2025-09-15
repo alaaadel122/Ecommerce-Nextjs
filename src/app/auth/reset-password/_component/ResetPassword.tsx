@@ -23,9 +23,7 @@ export default function ResetPasswordForm() {
      async function onSubmit(data: resetPasswordSchemaForm) {
           try {
                const res = await restpassword(data)
-               console.log(res)
 
-               console.log('token', res?.token)
                const loginRes = await signIn('credentials', {
                     email: data.email,
                     password: data.newPassword,

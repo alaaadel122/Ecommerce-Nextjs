@@ -22,7 +22,6 @@ export default function VerifyCodeForm() {
           try {
                const res = await verificationcode(data)
                toast.success("✅ Code verified successfully!")
-               console.log(res)
                if(res.status == 'Success'){
                router.push("/auth/reset-password")
                }
