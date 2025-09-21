@@ -30,7 +30,6 @@ export async function GET(req: Request) {
     const res = await fetch(`${process.env.API}/cart`, {
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
         token: String(token)
       },
     });
