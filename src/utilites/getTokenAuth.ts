@@ -6,7 +6,8 @@ export async function getTokenAuth() {
      :'next-auth.session-token'
      const authToken = (await cookies()).get(cookiesName)?.value
      const token = await decode({ token: authToken, secret: process.env.NEXTAUTH_SECRET!})
-     return token?.token
+     console.log('hhh',token)
+     return token?.accessToken
 
 
 }
