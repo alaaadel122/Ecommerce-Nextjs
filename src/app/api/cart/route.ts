@@ -52,6 +52,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   const token = await getTokenAuth();
+  console.log("🔑 token:", token);
 
   if (!token) {
     return NextResponse.json(
